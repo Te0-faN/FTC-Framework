@@ -6,7 +6,7 @@ class PID {
     private final double kp, ki, kd, kf;
     private final ElapsedTime timer = new ElapsedTime();
 
-    private double prev_error;
+    private double prev_error = 0;
     private double prev_reference = 0;
     private double integral;
     public double max_integral;
