@@ -2,8 +2,8 @@ package org.firstinspires.ftc.teamcode.math;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import static org.firstinspires.ftc.teamcode.Constants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.Constants.MAX_ACC;
+import static org.firstinspires.ftc.teamcode.utils.Constants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.utils.Constants.MAX_ACC;
 
 class TrapesiodalMotionProfiler {
     ElapsedTime timer = new ElapsedTime();
