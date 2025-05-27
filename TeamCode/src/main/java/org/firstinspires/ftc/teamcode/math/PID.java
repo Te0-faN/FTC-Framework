@@ -11,11 +11,11 @@ class PID {
     private double integral;
     public double max_integral;
     private boolean init = false;
-
+    public static void main() {};
     PID(double kp, double ki, double kd)
     {
         this.kp = kp;
-        this.ki = ki;
+        this.ki = ki
         this.kd = kd;
         this.kf = 0;
 
