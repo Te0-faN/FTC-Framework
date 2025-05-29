@@ -2,39 +2,48 @@ package org.firstinspires.ftc.teamcode.test;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Intake Pitch", group = "Test")
-public class IntakePitch extends LinearOpMode {
 
-    static class Pitch {
-        public Servo l;
-        public Servo r;
-    }
-    Pitch pitch;
+ @TeleOp(name = "Intake Pitch", group = "Test")
+public class IntakePitch extends LinearOpMode {
 
     public void runOpMode()
     {
-        pitch.l = hardwareMap.servo.get("pitch");
-        pitch.r = hardwareMap.servo.get("rpitch");
+        final double UP = 0.65;
+        final double DOWN = 0.775;
 
-		pitch.l.setPosition(0.5);
-		pitch.r.setPosition(0.5);
+        Servo l, r;
+        l = hardwareMap.servo.get("pitch");
+        r = hardwareMap.servo.get("rpitch");
+        l.setDirection(Servo.Direction.FORWARD);
+        r.setDirection(Servo.Direction.REVERSE);
+
+        l.setPosition(DOWN);
+        r.setPosition(DOWN);
 
         waitForStart();
 
         while (opModeIsActive()) {
-            Gamepad g = new Gamepad();
-            g.copy(gamepad1);
-
-             if (g.dpad_up) {
-                pitch.l.setPosition(pitch.l.getPosition() + 0.1);
-                pitch.r.setPosition(pitch.r.getPosition() + 0.1);
-            } else if (g.dpad_down) {
-                pitch.l.setPosition(pitch.l.getPosition() - 0.1);
-                pitch.r.setPosition(pitch.r.getPosition() - 0.1);
+            if (gamepad1.dpad_up) {
+                l.setPosition(l.getPosition() - 0.1);
+                r.setPosition(r.getPosition() - 0.1);
+            } else if (gamepad1.dpad_down) {
+                l.setPosition(l.getPosition() + 0.1);
+                r.setPosition(r.getPosition() + 0.1);
+            } else if (gamepad1.dpad_right) {
+                l.setPosition(l.getPosition() - 0.05);
+                r.setPosition(r.getPosition() - 0.05);
+            } else if (gamepad1.dpad_left) {
+                l.setPosition(l.getPosition() + 0.05);
+                r.setPosition(r.getPosition() + 0.05);
             }
+
+            telemetry.addData("Left: ", l.getPosition());
+            telemetry.addData("Right: ", r.getPosition());
+            telemetry.update();
+
+            sleep(250);
         }
 
     }

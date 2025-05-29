@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\teofan\\.gradle\\daemon\\8.9\\org.firstinspires.ftc.teamcode.TeamCode-debug-19:\\xml_regionala2025.xml.flat",
+        "source": "C:\\Users\\teofan\\.gradle\\daemon\\8.9\\org.firstinspires.ftc.teamcode.TeamCode-main-21:\\xml\\regionala2025.xml"
+    },
+    {
+        "merged": "C:\\Users\\teofan\\.gradle\\daemon\\8.9\\org.firstinspires.ftc.teamcode.TeamCode-debug-19:\\xml_teamwebcamcalibrations.xml.flat",
+        "source": "C:\\Users\\teofan\\.gradle\\daemon\\8.9\\org.firstinspires.ftc.teamcode.TeamCode-main-21:\\xml\\teamwebcamcalibrations.xml"
+    },
+    {
+        "merged": "org.firstinspires.ftc.teamcode.TeamCode-debug-19:/xml_regionala2025.xml.flat",
+        "source": "org.firstinspires.ftc.teamcode.TeamCode-main-21:/xml/regionala2025.xml"
+    },
+    {
+        "merged": "C:\\Users\\teofan\\.gradle\\daemon\\8.9\\org.firstinspires.ftc.teamcode.TeamCode-debug-19:\\raw_readme.md.flat",
+        "source": "C:\\Users\\teofan\\.gradle\\daemon\\8.9\\org.firstinspires.ftc.teamcode.TeamCode-main-21:\\raw\\readme.md"
+    }
+]

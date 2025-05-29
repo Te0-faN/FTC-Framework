@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.test;
+ package org.firstinspires.ftc.teamcode.test;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -30,6 +30,10 @@ public class TeleOpMain extends LinearOpMode {
     ElapsedTime elapsed_roata= new ElapsedTime();
 
     boolean mip_open = true;
+    final double MIP_OPEN = 0.015;
+    final double MIP_CLOSE = 0.35;
+    final double MIL_SCORE = 0.0;
+    final double MIL_EXCH = 0.4;
     boolean specimene=false;
 
     final double TICKS_435 = 384.5;
@@ -38,6 +42,8 @@ public class TeleOpMain extends LinearOpMode {
     final double TICKS_312 = 537.7;
     final double MAX_ISLIDER = 3 * TICKS_435;
     final double MAX_PIVOTER = 0.3 * TICKS_312;
+    final double PITCH_UP = 0.65;
+    final double PITCH_DOWN = 0.775;
     boolean grip_open = true;
     boolean up   = true;
     double pozyaw = 0;
@@ -90,9 +96,6 @@ public class TeleOpMain extends LinearOpMode {
 
         Rpitch.setDirection(Servo.Direction.REVERSE);
         Rroata.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        Rpitch.setPosition(0.0);
-        pitch.setPosition(0.0);
     }
 
     private void SetWheelsPower()
@@ -181,7 +184,7 @@ public class TeleOpMain extends LinearOpMode {
         telemetry.addData("Blue", blue);
 
         if (gamepad2.square && elapsed_mip.seconds() > 0.5) {
-            mip.setPosition(mip_open ? 0.0 : 0.4);
+            mip.setPosition(mip_open ? MIP_OPEN : MIP_CLOSE);
             mip_open = !mip_open;
             elapsed_mip.reset();
         }
@@ -189,12 +192,12 @@ public class TeleOpMain extends LinearOpMode {
     }
 
     public void pozitieInit() {
-        milici.setPosition(0.60);
-        mip.setPosition(0.4);
-        pitch.setPosition(0.4);
-        Rpitch.setPosition(0.4);
+        pitch.setPosition(PITCH_UP);
+        Rpitch.setPosition(PITCH_UP);
+        milici.setPosition(MIL_SCORE);
+        mip.setPosition(MIP_OPEN);
         pivoter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        pivoter.setPower(-0.6);
+        pivoter.setPower(-0.3);
         while (!touch2.isPressed());
 
         pivoter.setPower(0);
@@ -209,8 +212,8 @@ public class TeleOpMain extends LinearOpMode {
             outtake_slider.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             while (outtake_slider.getCurrentPosition()>-400 && opModeIsActive()) {}
 
-            pitch.setPosition(0.33);
-            Rpitch.setPosition(0.33);
+            pitch.setPosition(PITCH_DOWN);
+            Rpitch.setPosition(PITCH_UP);
 
             pivoter.setTargetPosition(27);
             pivoter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -257,25 +260,25 @@ public class TeleOpMain extends LinearOpMode {
 
     private void pitchMovement() {
         if (gamepad2.dpad_up) {
-            pitch.setPosition(0.33);
-            Rpitch.setPosition(0.33);
+            pitch.setPosition(PITCH_UP);
+            Rpitch.setPosition(PITCH_UP);
         }
         if (gamepad2.dpad_down) {
-            pitch.setPosition(0.43);
-            Rpitch.setPosition(0.43);
+            pitch.setPosition(PITCH_DOWN);
+            Rpitch.setPosition(PITCH_DOWN);
         }
     }
 
     public void reset() {
-        if (gamepad2.triangle   && specimene==false) {
+        if (gamepad2.triangle && specimene==false) {
             outtake_slider.setTargetPosition(-500);
             outtake_slider.setPower(1);
             outtake_slider.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            milici.setPosition(0.33);
-            mip.setPosition(0.23);
-            pitch.setPosition(0.33);
-            Rpitch.setPosition(0.33);
+            milici.setPosition(MIL_SCORE);
+            mip.setPosition(MIP_OPEN);
+            pitch.setPosition(PITCH_UP);
+            Rpitch.setPosition(PITCH_UP);
 
             //  while (outtake_slider.isBusy() && opModeIsActive()) {}
 
@@ -292,7 +295,7 @@ public class TeleOpMain extends LinearOpMode {
             outtake_slider.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             pivoter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            pivoter.setPower(-0.8);
+            pivoter.setPower(-0.5);
             while (!touch2.isPressed() && opModeIsActive());
             pivoter.setPower(0);
 
@@ -319,7 +322,7 @@ public class TeleOpMain extends LinearOpMode {
             pivoter.setPower(1);
             pivoter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            milici.setPosition(0.2);
+            milici.setPosition(MIL_SCORE);
         }
     }
 
@@ -375,18 +378,16 @@ public class TeleOpMain extends LinearOpMode {
     }
 
     private void Telemetrie() {
-//        telemetry.addData("pozitie pitch", pitch.getPosition());
-//        telemetry.addData("glisiera intake", intake_slider.getCurrentPosition());
-//        //telemetry.addData("glisiera intake pow", intake_slider.getPower());
-//        telemetry.addData("glisiera outtake", outtake_slider.getCurrentPosition());
-//        telemetry.addData("pivoter", pivoter.getCurrentPosition());
-//
-//        telemetry.addData("milici", milici.getPosition());
-//        telemetry.addData("mip", mip.getPosition());
-//        telemetry.addData("Buton : ", touch2.isPressed());
-//
-//        telemetry.addData("atins",touch.isPressed());
+        telemetry.addData("pozitie pitch", pitch.getPosition());
+        telemetry.addData("glisiera intake", intake_slider.getCurrentPosition());
+        telemetry.addData("glisiera outtake", outtake_slider.getCurrentPosition());
+        telemetry.addData("pivoter", pivoter.getCurrentPosition());
 
+        telemetry.addData("milici", milici.getPosition());
+        telemetry.addData("mip", mip.getPosition());
+
+        telemetry.addLine("TODO: Trebuie de vreificat pitchurile si roll de pe pivoter");
+        telemetry.addLine("dpad-uri, schimb si reset + patrat");
         telemetry.update();
     }
 
@@ -398,7 +399,7 @@ public class TeleOpMain extends LinearOpMode {
             pivoter.setTargetPosition(1100);//1050
             pivoter.setPower(1);
             pivoter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            milici.setPosition(0.53);
+            milici.setPosition(MIL_SCORE);
 
             outtake_slider.setTargetPosition(0);
             outtake_slider.setPower(1);
@@ -413,7 +414,7 @@ public class TeleOpMain extends LinearOpMode {
 
             while (elapsed_mip.seconds() < 0.8 && opModeIsActive())
             	;
-            mip.setPosition(0.1);
+            mip.setPosition(MIP_OPEN);
             mip_open=true;
         }
 
@@ -440,12 +441,13 @@ public class TeleOpMain extends LinearOpMode {
             pivoter.setPower(1);
             pivoter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+            /* TODO */
             milici.setPosition(0.43);
 
             while(pivoter.isBusy()&&opModeIsActive()){}
 
-            pitch.setPosition(0);
-            Rpitch.setPosition(0);
+            pitch.setPosition(PITCH_UP);
+            Rpitch.setPosition(PITCH_UP);
         }
     }
 }

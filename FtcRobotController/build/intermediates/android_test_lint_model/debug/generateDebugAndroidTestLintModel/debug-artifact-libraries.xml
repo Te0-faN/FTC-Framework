@@ -1,9 +1,9 @@
 <libraries>
   <library
       name=":@@:FtcRobotController::debug"
-      jars="C:\Users\teofan\.gradle\caches\8.9\transforms\62e9459b606abf69684395e5ef3107db\transformed\out\jars\classes.jar;C:\Users\teofan\.gradle\caches\8.9\transforms\62e9459b606abf69684395e5ef3107db\transformed\out\jars\libs\R.jar"
+      jars="C:\Users\teofan\.gradle\caches\8.9\transforms\b4cdfe8421e61f3da8cb28e1dd61a99a\transformed\out\jars\classes.jar;C:\Users\teofan\.gradle\caches\8.9\transforms\b4cdfe8421e61f3da8cb28e1dd61a99a\transformed\out\jars\libs\R.jar"
       resolved="FTC-Framework:FtcRobotController:unspecified"
-      folder="C:\Users\teofan\.gradle\caches\8.9\transforms\62e9459b606abf69684395e5ef3107db\transformed\out"
+      folder="C:\Users\teofan\.gradle\caches\8.9\transforms\b4cdfe8421e61f3da8cb28e1dd61a99a\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
